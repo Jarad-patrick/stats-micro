@@ -26,3 +26,17 @@ def mode(data: Iterable[float]) -> List[float]:
     max_count = max(counts.values())
     modes = [val for val, cnt in counts.items() if cnt == max_count]
     return sorted(modes)
+
+
+
+def variance(data: Iterable[float]) -> float:
+    data_list = list(data)
+    if len(data_list) < 2:
+        raise ValueError("variance requires at least two data points")
+    
+    m = mean(data_list)
+    return sum((x - m) ** 2 for x in data_list) / (len(data_list) - 1)  # sample variance
+
+
+def standard_deviation(data: Iterable[float]) -> float:
+    return variance(data) ** 0.5
